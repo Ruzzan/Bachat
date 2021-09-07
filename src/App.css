@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::placeholder {
+    color: aliceblue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+    width: 100%;
+    height:auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height:2em;
+    padding: 0 0.5em;
+    background:#8a2be2;
 }
 
-.App-link {
-  color: #61dafb;
+.date {
+    font-weight: 500;
+    font-size: 0.85em;
+    color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search input {
+    font-size: 1em;
+    background:transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 0.2em 0.3em;
+}
+
+#total {
+    font-size:1.3em;
+    color: #535353;
+    margin: 0.3em 0 0.5em 0;
+}
+
+.list {
+    padding: 0 0.5em;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:rgba(101, 31, 255,0.8);
+    padding: 0.1em 0.35em;
+    margin: 0.5em 0;
+    height: 3em;
+    border:none;
+    border-radius: 0.3em;
+}
+
+.item p {
+    font-size:1em;
+    color:aliceblue;
+    width:49%;
+}
+
+.item input {
+    font-size: 1.3em;
+    width: 25%;
+    border: none;
+    border-radius: 0.2em;
+    background:whitesmoke;
+    height:90%;
+    padding: 0.2em;
+}
+
+.item button {
+    width: 20%;
+    height: 90%;
+    border: none;
+    background:#07df8c;
+    font-size:1.6em;
+    text-align: center;
+    border-radius: 0.1em;
 }
