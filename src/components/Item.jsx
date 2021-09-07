@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 
 const Item = ({data,addAmount}) => {
     const [amount,setAmount] = useState('');
+    const [typing,setTyping] = useState(false);
     
     useEffect(()=>{
         const loadAmount = () => {
@@ -12,6 +13,7 @@ const Item = ({data,addAmount}) => {
 
     const handleChange = (event) => {
         setAmount(parseInt(event.target.value));
+        setTyping(true);
     }
 
     return (
@@ -20,7 +22,9 @@ const Item = ({data,addAmount}) => {
     <input className="amount__input" type="number" placeholder="Amount" 
     onChange={handleChange} defaultValue={data.amount!==0||data.amount===''?data.amount:0}
     value={amount} />
-    <button className="save__btn" onClick={()=>addAmount(data.id,amount)}>&#128221;</button>
+    <button className="save__btn" onClick={()=>{addAmount(data.id,amount);setTyping(false)}}>
+    {typing ? '💾' : '📝'}
+    </button>
     </div>
     )
 }
