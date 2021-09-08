@@ -46,6 +46,18 @@ const Home = () => {
         }
     }
 
+    const resetList = () => {
+        const password = "1001";
+        let inputPassword = prompt("Enter Pin");
+        if(inputPassword===password) {
+            const newList = nameList.map((person)=>{
+                return {...person,amount:0}
+            });
+            setNameList([...newList]);
+            window.location.reload();
+        }
+    }
+
     return (
     <section id="container">
     {/* navbar */}
@@ -67,7 +79,7 @@ const Home = () => {
         return <Item data={item} key={item.id} addAmount={addAmount} />
     })}
     <div className="flex">
-    <button className="toggle__btn black" >Reset ⛔</button>
+    <button className="toggle__btn black" onClick={resetList}>Reset ⛔</button>
     </div>
     </div>
     </section>
