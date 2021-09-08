@@ -5,8 +5,8 @@ const Item = ({data,addAmount}) => {
     const [typing,setTyping] = useState(false);
     
     useEffect(()=>{
-        const loadAmount = () => {
-            setAmount(data.amount);
+        const loadAmount = async () => {
+           await setAmount(data.amount!==0?data.amount:0);
         }
         loadAmount();
     },[])
@@ -20,9 +20,9 @@ const Item = ({data,addAmount}) => {
     <div className="item">
     <p>{data.name}</p> 
     <input className="amount__input" type="number" placeholder="Amount" 
-    onChange={handleChange} defaultValue={data.amount!==0||data.amount===''?data.amount:0}
-    value={amount} />
-    <button className="save__btn" onClick={()=>{addAmount(data.id,amount);setTyping(false)}}>
+    onChange={handleChange} defaultValue={amount}/>
+    <button className="save__btn" 
+    onClick={()=>{addAmount(data.id,amount);setTyping(false)}}>
     {typing ? '💾' : '📝'}
     </button>
     </div>
