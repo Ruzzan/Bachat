@@ -15,10 +15,13 @@
     height:auto;
 }
 
-.nav__flex {
+.flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.nav__flex {
     height:2em;
     padding: 0 0.5em;
     background:#8a2be2;
@@ -85,4 +88,22 @@
     font-size:1.6em;
     text-align: center;
     border-radius: 0.1em;
+}
+
+.toggle__btn {
+    height: 2.2em;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.25em;
+    background:khaki;
+}
+
+.active {
+    background:tomato;
+    color: white;
+}
+
+.black {
+    background: #535355;
+    color: white;
 }
