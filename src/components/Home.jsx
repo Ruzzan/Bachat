@@ -5,17 +5,20 @@ import {NAME_LIST} from './Data';
 const Home = () => {
     const localData = JSON.parse(localStorage.getItem("name_list"));
     const [nameList,setNameList] = useState(localData||NAME_LIST);
+    const [query,setQuery] = useState('');
+    const [searchResult,setSearchResult] = useState(nameList);
+    const [complete,setCompleted] = useState(false);
     const [total,setTotal] = useState(0);
-    console.log(nameList)
+    
+    let date = new Date().getMonth()
+    console.log(date)
+
     useEffect(() => {
-        const saveData = () => {
-          localStorage.setItem("name_list",JSON.stringify(nameList));
-          let totalAmount = nameList.map((item)=>item.amount).reduce((sum,number)=>{
+        localStorage.setItem("name_list",JSON.stringify(nameList));
+        let totalAmount = nameList.map((item)=>item.amount).reduce((sum,number)=>{
             return sum+number
         },0);
         setTotal(totalAmount);
-        }
-        saveData();
     },[nameList])
 
     const addAmount = (id,amount) => {
@@ -24,22 +27,48 @@ const Home = () => {
         setNameList([...nameList]);
     }
 
+    const searchName = (event) => {
+        setQuery(event.target.value)
+        const searchResult = nameList.filter((person)=>person.name.toLowerCase().includes(query.toLowerCase()));
+        setSearchResult(searchResult);
+        if(event.target.value==='') {
+            setSearchResult(nameList);
+        }
+    }
+
+    const toggleList = () => {
+        setCompleted(!complete);
+        if(complete) {
+            const searchResult = nameList.filter((person)=>person.amount!==0);
+            setSearchResult(searchResult);
+        } else {
+            setSearchResult(nameList);
+        }
+    }
+
     return (
     <section id="container">
     {/* navbar */}
-    <div className="nav__flex">
+    <div className="nav__flex flex">
     <div className="date">05/20 Wednesday</div>
     <div className="search">
-    <input type="search" placeholder="Name.."/>
+    <input type="search" placeholder="Name.." onChange={searchName}
+    value={query}/>
     </div>
     </div>
     {/* name list */}
     <div className="list">
-    {/* total */}
-    <h4 id="total">Total: {total}</h4>
-    {nameList.map((item)=>{
+    {/* total & complete toggle*/}
+    <div className="flex">
+    <h4 id="total">Total: {total}</h4> 
+    <button className={complete?"toggle__btn":"toggle__btn active"} onClick={toggleList}>Completed</button>
+    </div>
+    {searchResult.map((item)=>{
         return <Item data={item} key={item.id} addAmount={addAmount} />
     })}
+    <div className="flex">
+    <button className="toggle__btn black" >Reset ⛔</button>
+    </div>
     </div>
     </section>
     )
