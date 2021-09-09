@@ -10,8 +10,10 @@ const Home = () => {
     const [complete,setCompleted] = useState(false);
     const [total,setTotal] = useState(0);
     
-    let date = new Date().getMonth()
-    console.log(date)
+    let month = new Date().getMonth();
+    let day = new Date().getDay();
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    let today = days[day];
 
     useEffect(() => {
         localStorage.setItem("name_list",JSON.stringify(nameList));
@@ -50,10 +52,7 @@ const Home = () => {
         const password = "1001";
         let inputPassword = prompt("Enter Pin");
         if(inputPassword===password) {
-            const newList = nameList.map((person)=>{
-                return {...person,amount:0}
-            });
-            setNameList([...newList]);
+            localStorage.removeItem("name_list");
             window.location.reload();
         }
     }
@@ -62,7 +61,7 @@ const Home = () => {
     <section id="container">
     {/* navbar */}
     <div className="nav__flex flex">
-    <div className="date">05/20 Wednesday</div>
+    <div className="date"> {month}/{day} {today} </div>
     <div className="search">
     <input type="search" placeholder="Name.." onChange={searchName}
     value={query}/>
