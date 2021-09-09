@@ -83,6 +83,6 @@ export var NAME_LIST = [
     
     {id:178,name:"Rabindra Shrestha",amount:0},
     {id:514,name:"Binod Shrestha",amount:0},
-    {id:055,name:"Laxmi Sarita PurnaLxmi",amount:0}
+    {id:55972,name:"Laxmi Sarita PurnaLxmi",amount:0}
 
 ];
