@@ -57,6 +57,26 @@ const Home = () => {
         }
     }
 
+    const uploadData = async () => {
+        let _data = {
+            data:localStorage.getItem("name_list").toString(),
+        }
+        const response = await fetch("http://127.0.0.1:8000/api/create/",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(_data)
+        }
+        );
+        if(response.status===201) {
+            alert("Uploaded Successfully")
+        } else {
+            alert("Failed");
+        }
+    }
+
     return (
     <section id="container">
     {/* navbar */}
@@ -79,6 +99,8 @@ const Home = () => {
     })}
     <div className="flex">
     <button className="toggle__btn black" onClick={resetList}>Reset ⛔</button>
+    <button className="toggle__btn purple" disabled={!navigator.onLine}
+    onClick={uploadData}>Upload 📤</button>
     </div>
     </div>
     </section>
