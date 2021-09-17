@@ -51,6 +51,7 @@ export var NAME_LIST = [
     {id:777,name:"Maiya Shanti Mdhr",amount:0},
     {id:205,name:"Kabiraj Mhr",amount:0},
     {id:462,name:"Sudip Shrestha",amount:0},
+    {id:324,name:"Dipak Raj Mhr",amount:0},
     {id:371,name:"Laxman Acharya",amount:0},
     {id:999,name:"Sunil Pradhan",amount:0},
     {id:525,name:"Ratna Dhwaj Mhr",amount:0},
