@@ -10,10 +10,9 @@ const Home = () => {
     const [complete,setCompleted] = useState(false);
     const [total,setTotal] = useState(0);
     
-    let month = new Date().getMonth();
-    let day = new Date().getDay();
+    let fullDate = new Date().toISOString().slice(0, 10)
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    let today = days[day];
+    let today = days[new Date().getDay()];
 
     useEffect(() => {
         localStorage.setItem("name_list",JSON.stringify(nameList));
@@ -81,7 +80,7 @@ const Home = () => {
     <section id="container">
     {/* navbar */}
     <div className="nav__flex flex">
-    <div className="date"> {month}/{day} {today} </div>
+    <div className="date"> {fullDate} {today} </div>
     <div className="search">
     <input type="search" placeholder="Name.." onChange={searchName}
     value={query}/>
@@ -99,7 +98,7 @@ const Home = () => {
     })}
     <div className="flex">
     <button className="toggle__btn black" onClick={resetList}>Reset ⛔</button>
-    <button className="toggle__btn purple" disabled={!navigator.onLine}
+    <button className={navigator.onLine ? "toggle__btn purple": "toggle__btn black"} disabled={!navigator.onLine}
     onClick={uploadData}>Upload 📤</button>
     </div>
     </div>
