@@ -9,7 +9,8 @@ const Home = () => {
     const [searchResult,setSearchResult] = useState(nameList);
     const [complete,setCompleted] = useState(false);
     const [total,setTotal] = useState(0);
-    
+    const [uploading,setUploading] = useState(false);
+
     let fullDate = new Date().toISOString().slice(0, 10)
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     let today = days[new Date().getDay()];
@@ -57,10 +58,11 @@ const Home = () => {
     }
 
     const uploadData = async () => {
+        setUploading(true);
         let _data = {
             data:localStorage.getItem("name_list").toString(),
         }
-        const response = await fetch("http://127.0.0.1:8000/api/create/",
+        const response = await fetch("https://bachat.pythonanywhere.com/api/create/",
         {
             method:"POST",
             headers:{
@@ -70,8 +72,10 @@ const Home = () => {
         }
         );
         if(response.status===201) {
+            setUploading(false)
             alert("Uploaded Successfully")
         } else {
+            setUploading(false);
             alert("Failed");
         }
     }
@@ -98,8 +102,8 @@ const Home = () => {
     })}
     <div className="flex">
     <button className="toggle__btn black" onClick={resetList}>Reset ⛔</button>
-    <button className={navigator.onLine ? "toggle__btn purple": "toggle__btn black"} disabled={!navigator.onLine}
-    onClick={uploadData}>Upload 📤</button>
+    <button className="toggle__btn purple" disabled={uploading}
+    onClick={uploadData}>{uploading?"Uploading 📤":"Upload 📤"}</button>
     </div>
     </div>
     </section>
