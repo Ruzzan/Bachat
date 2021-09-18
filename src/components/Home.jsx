@@ -8,6 +8,7 @@ const Home = () => {
     const [query,setQuery] = useState('');
     const [searchResult,setSearchResult] = useState(nameList);
     const [complete,setCompleted] = useState(false);
+    const [collected,setCollected] = useState(0); // total no. of collection
     const [total,setTotal] = useState(0);
     const [uploading,setUploading] = useState(false);
 
@@ -43,6 +44,7 @@ const Home = () => {
         if(complete) {
             const searchResult = nameList.filter((person)=>person.amount!==0);
             setSearchResult(searchResult);
+            setCollected(searchResult.length);
         } else {
             setSearchResult(nameList);
         }
@@ -97,6 +99,7 @@ const Home = () => {
     <h4 id="total">Total: {total}</h4> 
     <button className={complete?"toggle__btn":"toggle__btn active"} onClick={toggleList}>Completed</button>
     </div>
+    {!complete&&<h4>Collected From:{collected}</h4>}
     {searchResult.map((item)=>{
         return <Item data={item} key={item.id} addAmount={addAmount} />
     })}
