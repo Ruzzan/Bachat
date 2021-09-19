@@ -106,7 +106,7 @@ const Home = () => {
     <h4 id="total">Total: {total}</h4> 
     <button className={complete?"toggle__btn":"toggle__btn active"} onClick={toggleList}>Completed</button>
     </div>
-    {!complete&&<h4>Collected From:{collected}</h4>}
+    {!complete&&<p className="lead">Collected Of: {collected}</p>}
     {searchResult.map((item)=>{
         return <Item data={item} key={item.id} addAmount={addAmount} />
     })}
