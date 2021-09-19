@@ -52,7 +52,7 @@ const Home = () => {
 
     const resetList = () => {
         const password = "1001";
-        let inputPassword = prompt("Enter Pin");
+        let inputPassword = prompt("Enter PIN");
         if(inputPassword===password) {
             localStorage.removeItem("name_list");
             window.location.reload();
@@ -60,6 +60,9 @@ const Home = () => {
     }
 
     const uploadData = async () => {
+        let password = "1337";
+        let inputPassword = prompt("Enter PIN");
+        if(inputPassword===password) {
         setUploading(true);
         let _data = {
             data:localStorage.getItem("name_list").toString(),
@@ -79,6 +82,10 @@ const Home = () => {
         } else {
             setUploading(false);
             alert("Failed");
+        }
+        }
+        else {
+            alert("Invalid PIN");
         }
     }
 
