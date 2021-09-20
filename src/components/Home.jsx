@@ -5,12 +5,13 @@ import {NAME_LIST} from './Data';
 const Home = () => {
     const localData = JSON.parse(localStorage.getItem("name_list"));
     const [nameList,setNameList] = useState(localData||NAME_LIST);
-    const [query,setQuery] = useState('');
+    const [query,setQuery] = useState(''); //search query
     const [searchResult,setSearchResult] = useState(nameList);
-    const [complete,setCompleted] = useState(false);
+    const [complete,setCompleted] = useState(true); // toggle collected people only
     const [collected,setCollected] = useState(0); // total no. of collection
-    const [total,setTotal] = useState(0);
-    const [uploading,setUploading] = useState(false);
+    const [total,setTotal] = useState(0); // total collection
+    const [uploading,setUploading] = useState(false); // uploading to api state
+    const [theme,setTheme] = useState(localStorage.getItem('theme')||'light'); // toggle theme
 
     let fullDate = new Date().toISOString().slice(0, 10)
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -23,6 +24,17 @@ const Home = () => {
         },0);
         setTotal(totalAmount);
     },[nameList])
+
+    // set theme
+    useEffect(()=>{
+        if(theme==='light') {
+            localStorage.setItem("theme","light");
+            document.body.classList.remove("dark");
+        } else if(theme==='dark') {
+            localStorage.setItem("theme","dark");
+            document.body.classList.add("dark");
+        }
+    },[theme,])
 
     const addAmount = (id,amount) => {
         let currentPerson = nameList.find((person)=>id===person.id);
@@ -89,6 +101,10 @@ const Home = () => {
         }
     }
 
+    const toggleTheme = () =>{
+        theme === 'light' ? setTheme('dark') : setTheme('light')
+    }
+
     return (
     <section id="container">
     {/* navbar */}
@@ -104,6 +120,9 @@ const Home = () => {
     {/* total & complete toggle*/}
     <div className="flex">
     <h4 id="total">Total: {total}</h4> 
+    <button className="toggle__btn theme" onClick={toggleTheme}>
+    {theme==='light'?"🌘":"🌞"}
+    </button>
     <button className={complete?"toggle__btn":"toggle__btn active"} onClick={toggleList}>Completed</button>
     </div>
     {!complete&&<p className="lead">Collected Of: {collected}</p>}
