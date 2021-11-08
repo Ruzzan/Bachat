@@ -58,7 +58,7 @@ export var NAME_LIST = [
     {id:555,name:"Pramod Karki",amount:0},
     {id:512,name:"Kamala Mhr",amount:0},
     
-    {id:147,name:"Kishor Bhandari (Bkpati 2)",amount:0},
+    {id:147,name:"Kishor Bhandari",amount:0},
     {id:212,name:"Bhim Bahadur Sth",amount:0},
     {id:234,name:"Nabina Pradhan",amount:0},
     {id:264,name:"Babin Pradhan",amount:0},
@@ -80,7 +80,7 @@ export var NAME_LIST = [
 
     {id:510,name:"Lav Kumar Sth",amount:0},
     {id:26,name:"Manikram Mdhr",amount:0},
-    {id:543,name:"Sanil Subodh",amount:0},
+    {id:543,name:"Sona Mdhr",amount:0},
     
     {id:178,name:"Rabindra Shrestha",amount:0},
     {id:514,name:"Binod Shrestha",amount:0},
