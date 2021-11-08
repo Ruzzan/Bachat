@@ -75,11 +75,15 @@ const Home = () => {
         let password = "1337";
         let inputPassword = prompt("Enter PIN");
         if(inputPassword===password) {
-        setUploading(true);
+        let collectionName = prompt("Enter Collection Date");
         let _data = {
+            title:collectionName.toString(),
             data:localStorage.getItem("name_list").toString(),
         }
-        const response = await fetch("https://bachat.pythonanywhere.com/api/create/",
+        if(_data.title !== '') {
+            setUploading(true);
+        }
+        const response = await fetch("http://127.0.0.1:8000/api/create/",
         {
             method:"POST",
             headers:{
